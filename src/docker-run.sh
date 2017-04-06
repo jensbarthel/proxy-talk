@@ -1,8 +1,4 @@
 #!/bin/bash
-
-echo "Downloading reverse proxy template file"
-curl https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl > nginx.tmpl
-
 echo "Starting nginx instance..."
 docker run -d -p 80:80 -p 443:443 \
     --name nginx \
