@@ -4,7 +4,7 @@ wget https://github.com/jensbarthel/proxy-talk/archive/master.zip
 unzip master.zip
 rm master.zip
 cd proxy-talk-master
-docker build -t registry.sigdevops.io/talk-nginx
+docker build -t registry.sigdevops.io/talk-nginx .
 echo "Pushing proxy talk nginx..."
 docker push registry.sigdevops.io/talk-nginx
 
