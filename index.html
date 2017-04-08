@@ -1,110 +1,149 @@
-	<!doctype html>
+<!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/rx.css">
+  <title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/rx.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-background-image="img/switchboard.jpg">
-					<h2>
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-background-image="img/switchboard.jpg">
+        <h2>
 						the person you are calling is on another line
 					</h2>
-					<h3>
-						Building a secure reverse proxy with letsencrypt certificates
+        <h3>
+						Building a containerized secure reverse proxy with docker and letsencrypt
 					</h3>
-				</section>
-
-				<section data-background-image="img/willis.jpg">
-				</section>
-				<section>
-					<section>
-						<h2>Reverse proxy</h2>
-					</section>
-					<section data-background-image="img/cloudcraftproxy-00.png">
-						<h3>Proxy</h3>
-					</section>
-					<section data-background-image="img/cloudcraftproxy-01.png"></section>
-					<section data-background-image="img/cloudcraftproxy-02.png"></section>
-					<section data-background-image="img/cloudcraftproxy-03.png"></section>
-					<section data-background-image="img/cloudcraftreverse-proxy.png"></section>
-					<section data-background-image="img/galifianakis_why.gif"></section>
-					<section>
-						<h3>
+      </section>
+      <section data-background-image="img/willis.jpg">
+      </section>
+      <section>
+        <section>
+          <h2>Reverse proxy</h2>
+        </section>
+        <section data-background-image="img/cloudcraftproxy-00.png">
+          <h3>Proxy</h3>
+        </section>
+        <section data-background-image="img/cloudcraftproxy-01.png"></section>
+        <section data-background-image="img/cloudcraftproxy-02.png"></section>
+        <section data-background-image="img/cloudcraftproxy-03.png"></section>
+        <section data-background-image="img/cloudcraftreverse-proxy.png"></section>
+        <section data-background-image="img/galifianakis_why.gif"></section>
+        <section>
+          <h3>
 							Lots of things
 						</h3>
-						<p class="fragment fade-in">SSL termination</p>
-						<p class="fragment fade-in">Load balancing</p>
-						<p class="fragment fade-in">Zero downtime deployments</p>
-						<p class="fragment fade-in">Multiple web servers on same ip</p>
-						<p class="fragment fade-in">Caching</p>
-					</section>
-				</section>
-					<section>
-					<section data-background="#FFFFFF" >
-						<img src="img/lets-encrypt.png"/>
-					</section>
-					<section>
-						<h3>
-							Let's Encrypt
+          <p class="fragment fade-in">SSL termination</p>
+          <p class="fragment fade-in">Load balancing</p>
+          <p class="fragment fade-in">Zero downtime deployments</p>
+          <p class="fragment fade-in">Multiple web servers on same ip</p>
+          <p class="fragment fade-in">Caching</p>
+        </section>
+      </section>
+      <section>
+        <section data-background="#FFFFFF">
+          <img src="img/lets-encrypt.png" />
+        </section>
+        <section>
+          <h3>
+							<a href="https://letsencrypt.org">Let's Encrypt</a>
 						</h3>
-						<p class="fragment fade-in">Root CA since April 2016</p>
-						<p class="fragment fade-in">Involved parties: EFF, ISRG, Mozilla Foundation, UMS, Akamai, Cisco</p>
-						<p class="fragment fade-in">X.509 certs for everyone, for free</p>
-						<p class="fragment fade-in"> => Kulturleistung!</p>
-						<p class="fragment fade-in">Challenge/response protocol named ACME for certificate acquisition</p>
-					</section>
-				</section>
+          <p class="fragment fade-in">Root CA since April 2016</p>
+          <p class="fragment fade-in">Involved parties: EFF, ISRG, Mozilla Foundation, UMS, Akamai, Cisco</p>
+          <p class="fragment fade-in">X.509 certs for everyone, for free</p>
+          <p class="fragment fade-in"> => Kulturleistung!</p>
+          <p class="fragment fade-in">Challenge/response protocol named ACME for certificate acquisition</p>
+        </section>
+      </section>
 
+      <section>
+        <section data-background-image="img/containerization.jpg" data-background-size="contain">
+          <h2>Containerization</h2>
+        </section>
+        <section>
+          <h3>Infrastructure containers</h3>
+          <ul>
+            <li><b>ngix</b>: <a href="https://github.com/jwilder/nginx-proxy">Nginx reverse proxy container</a>. All traffic goes through here.</li>
+            <li><b>nginx-gen</b>: <a href="https://github.com/jwilder/nginx-proxy">Docker-gen container</a>. Listens on docker network and updates proxy config on demand.</li>
+            <li><b>nginx-letsencrypt</b>: <a href="https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion">Letsencrypt companion container</a>. Listens on docker network and obtains certificates on demand</li>
+          </ul>
+        </section>
+				<section data-background-image="img/generator.png" data-background-size="contain">
+					<h3>docker-gen</h3>
+				</section>
 				<section>
-					<section data-background-image="img/containerization.jpg" data-background-size="contain">
-						<h2>Containerization</h2>
-					</section>
-					<section data-background-image="img/game-plan.jpg" data-background-size="contain">
-						<h3>Game plan</h3>
-					</section>
-
+					<h3>docker-gen</h3>
+					Generates files based on templates and docker meta data
+					Templates are written using the Go <a href="https://golang.org/pkg/text/template/">text/template language</a>
+					Renders the nginx default.conf for the reverse proxy
+					Update is triggered when containers with <code>-e VIRTUAL_HOST=...</code> are started
 				</section>
+				<section>
+          Honorable mentions
+        </section>
+        <section>
+          <p>
+            <img src="img/jwilder.jpg" height="200" width="200" />
+            <br />
+            <a href="https://github.com/jwilder">Jason Wilder</a>: docker-gen, nginx-proxy
+          </p>
+        </section>
+        <section>
+          <p>
+            <img src="img/iblusseau.png" height="200" width="200" />
+            <br />
+            <a target="https://github.com/jrcs">Ives Blusseau</a>: letsencrypt-nginx-proxy-companion
+          </p>
+        </section>
+      </section>
+      </section>
+    </div>
+  </div>
 
-			</div>
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
 
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      history: true,
 
-		</div>
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [{
+        src: 'plugin/markdown/marked.js'
+      }, {
+        src: 'plugin/markdown/markdown.js'
+      }, {
+        src: 'plugin/notes/notes.js',
+        async: true
+      }, {
+        src: 'plugin/highlight/highlight.js',
+        async: true,
+        callback: function() {
+          hljs.initHighlightingOnLoad();
+        }
+      }]
+    });
+  </script>
+</body>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
-
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
-
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
 </html>

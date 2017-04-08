@@ -8,7 +8,7 @@ docker run -d -p 80:80 -p 443:443 \
     -v /home/core/certs:/etc/nginx/certs:ro \
     nginx
 
-sleep 2
+sleep 1
 echo "Starting docker-gen instance..."
 docker run -d \
   --name nginx-gen \
@@ -18,7 +18,7 @@ docker run -d \
   jwilder/docker-gen \
   -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
 
-sleep 2
+sleep 1
 echo "Starting letsencrypt-nginx-proxy-companion..."
 docker run -d \
   --name nginx-letsencrypt \
@@ -28,7 +28,7 @@ docker run -d \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   jrcs/letsencrypt-nginx-proxy-companion
 
-sleep 2
+sleep 1
 echo "Starting sigdevops example app..."
 docker run -d \
     --name sigdevops-app \
@@ -37,7 +37,7 @@ docker run -d \
     -e "LETSENCRYPT_EMAIL=jb@wps.de" \
     nginx
 
-sleep 2
+sleep 1
 echo "Starting sigdevops docker registry..."
 docker run -d \
     --name sigdevops-registry \
