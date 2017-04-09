@@ -34,6 +34,7 @@
 						Building a containerized secure reverse proxy with docker and letsencrypt
 					</h3>
       </section>
+
       <section data-background-image="img/willis.jpg">
       </section>
       <section>
@@ -87,17 +88,28 @@
             <li><b>nginx-letsencrypt</b>: <a href="https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion">Letsencrypt companion container</a>. Listens on docker network and obtains certificates on demand</li>
           </ul>
         </section>
-				<section data-background-image="img/generator.png" data-background-size="contain">
-					<h3>docker-gen</h3>
-				</section>
-				<section>
-					<h3>docker-gen</h3>
-					Generates files based on templates and docker meta data
-					Templates are written using the Go <a href="https://golang.org/pkg/text/template/">text/template language</a>
-					Renders the nginx default.conf for the reverse proxy
-					Update is triggered when containers with <code>-e VIRTUAL_HOST=...</code> are started
-				</section>
-				<section>
+        <section data-background-image="img/generator.png" data-background-size="contain">
+          <h3>docker-gen</h3>
+        </section>
+        <section>
+          <h3>docker-gen</h3> Generates files based on templates and docker meta data Templates are written using the Go <a href="https://golang.org/pkg/text/template/">text/template language</a> Renders the nginx default.conf for the reverse proxy Update is triggered when
+          containers with <code>-e VIRTUAL_HOST=...</code> are started
+        </section>
+        <section data-background-image="img/vault.jpg" data-background-size="contain">
+          <h3>docker-letsencrypt-nginx-proxy-companion</h3>
+        </section>
+        <section>
+          <h3>docker-letsencrypt-nginx-proxy-companion</h3> Renders certificate location information into proxy configuration Handles certificate <a href="https://letsencrypt.org/how-it-works/">issuance and renewal</a> Automatically issues certificates for new containers started with:
+          <pre>
+            <code class="hljs" data-trim contenteditable>
+              -e "LETSENCRYPT_HOST=url-to-certify.domain"
+              -e "LETSENCRYPT_EMAIL=somemail@example.de"</code>
+          </pre>
+        </section>
+        <section data-background-image="img/cena.gif" data-background-size="contain">
+          <h2>Demo time</h2>
+        </section>
+        <section>
           Honorable mentions
         </section>
         <section>
@@ -114,6 +126,20 @@
             <a target="https://github.com/jrcs">Ives Blusseau</a>: letsencrypt-nginx-proxy-companion
           </p>
         </section>
+      </section>
+      <section>
+        <section data-background-image="img/bridge_fail.jpg" data-background-size="contain">
+          <h2>Putting it all together</h2>
+        </section>
+        <section>
+          <p class="fragment fade-in">Works well for publicly exposed services</p>
+          <p class="fragment fade-in">Best for small to medium sized traffic</p>
+          <p class="fragment fade-in">Easy, reliable, free</p>
+          <p class="fragment fade-in">To evaluate: sub cert generation for http services in dmz</p>
+          <p class="fragment fade-in">To evaluate: scalability</p>
+        </section>
+        <section data-background-image="img/yeah.gif" data-background-size="contain">
+          <h2>Thanks for your attention</h2>
       </section>
       </section>
     </div>
